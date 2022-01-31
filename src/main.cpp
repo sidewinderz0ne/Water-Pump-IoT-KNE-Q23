@@ -18,6 +18,7 @@ float sensorD = 320.47; //sensor ke dasar
 float sensorN = 190.47; //sensor ke nol blok
 float minimum = -90;
 float maximum = -70;
+//float maximum = -80;
 float benteng = -115;
 //float calIn = 70;
 float calIn = 21;
@@ -29,9 +30,9 @@ const int arIn = 10;
 const int arOut = 10;
 float avgInAr[arIn], avgOutAr[arOut] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 float avgIn, avgOut = 0;
-int idwl = 77;
-int log_time_unit = 1; // default is 1-minute between readings, 10=15secs 40=1min 200=5mins 400=10mins 2400=1hr
-//int log_time_unit  = 1;  // default is 1-minute between readings, 10=15secs 40=1min 200=5mins 400=10mins 2400=1hr
+int idwl = 99;
+//int log_time_unit = 1; // default is 1-minute between readings, 10=15secs 40=1min 200=5mins 400=10mins 2400=1hr
+int log_time_unit  = 162;  // default is 1-minute between readings, 10=15secs 40=1min 200=5mins 400=10mins 2400=1hr
 
 //declare ultrasonic [trig, echo]
 const int ultrasonic1[2] = {13, 12};
@@ -39,13 +40,13 @@ const int ultrasonic2[2] = {2, 4};
 
 //const int waterPump[6] = {LED_BUILTIN, 13, 12, 14, 27, 26};
 const int pompaCons = 4;
-const int waterPump[pompaCons] = {2, 10, 3, 4};
+const int waterPump[pompaCons] = {10, 2, 3, 4};
 const int gensetOn = 5;    //relay 4
 const int gensetStart = 6; //relay 5
 bool starterGenset = false;
 
-//unsigned long siklusPompa = 5000;
-unsigned long siklusPompa = 7200000;
+unsigned long siklusPompa = 5000;
+//unsigned long siklusPompa = 7200000;
 bool triggerPompa = true;
 
 //setting id water level dan php
@@ -64,7 +65,7 @@ float distanceNowIn, distanceNowOut = 0;
 
 //password wifi1 default
 const char *ssid = "asdf";
-const char *password = "asdfasdf";
+const char *password = "asdfasdfasdf";
 //const char* ssid = "wifi";
 //const char* password = "wifi2021";
 
@@ -100,10 +101,10 @@ String timeStr, timeNow = "";
 int timer_cnt, log_interval, log_count;
 
 long uptimeInt = 0;
-/* long nyalaInt = 180;
-long matiInt = 36; */
-long nyalaInt = 1;
-long matiInt = 1;
+long nyalaInt = 180;
+long matiInt = 36;
+/* long nyalaInt = 120;
+long matiInt = 90; */
 bool seq = false;
 
 void pumpTrig(bool kondisi);
@@ -744,7 +745,7 @@ void writeFile(fs::FS &fs, const char *path, const char *message)
   else
   {
     Serial.println("- write failed");
-
+    deactivate();
     ESP.restart();
   }
   file.close();
