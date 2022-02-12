@@ -31,8 +31,9 @@ const int arOut = 10;
 float avgInAr[arIn], avgOutAr[arOut] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 float avgIn, avgOut = 0;
 int idwl = 99;
-//int log_time_unit = 1; // default is 1-minute between readings, 10=15secs 40=1min 200=5mins 400=10mins 2400=1hr
-int log_time_unit  = 162;  // default is 1-minute between readings, 10=15secs 40=1min 200=5mins 400=10mins 2400=1hr
+//int log_time_unit = 5; // default is 1-minute between readings, 10=15secs 40=1min 200=5mins 400=10mins 2400=1hr
+//int log_time_unit  = 162;  // default is 1-minute between readings, 10=15secs 40=1min 200=5mins 400=10mins 2400=1hr
+int log_time_unit  = 53;  // default is 1-minute between readings, 10=15secs 40=1min 200=5mins 400=10mins 2400=1hr
 
 //declare ultrasonic [trig, echo]
 const int ultrasonic1[2] = {13, 12};
@@ -103,8 +104,8 @@ int timer_cnt, log_interval, log_count;
 long uptimeInt = 0;
 long nyalaInt = 180;
 long matiInt = 36;
-/* long nyalaInt = 120;
-long matiInt = 90; */
+//long nyalaInt = 90;
+//long matiInt = 30;
 bool seq = false;
 
 void pumpTrig(bool kondisi);
